@@ -71,11 +71,9 @@ public class LoginActivity extends AppCompatActivity {
                     auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful())
-                            {
+                            if (task.isSuccessful()) {
                                 progressDialog.show();
                                 startActivity(new Intent(LoginActivity.this,RegistrationActivity.class));
-
                             }else
                             {
                                 progressDialog.dismiss();
@@ -83,13 +81,9 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     });
-
-
                 }
-
             }
         });
-
         tv_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
