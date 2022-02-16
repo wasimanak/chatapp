@@ -71,6 +71,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 String email=reg_email.getText().toString();
                 String pass=reg_pass.getText().toString();
                 String confirmpass=reg_confirmpass.getText().toString();
+                String status="Hi there I'm using Chat App";
 
 
                 if (TextUtils.isEmpty(name)|| TextUtils.isEmpty(email) ||
@@ -108,7 +109,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onSuccess(Uri uri) {
                                                         imageUri=uri.toString();
-                                                        Users users=new Users(auth.getUid(),name,email,imageUri);
+                                                        Users users=new Users(auth.getUid(),name,email,imageUri,status);
                                                         reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                             @Override
                                                             public void onComplete(@NonNull Task<Void> task) {
@@ -126,9 +127,9 @@ public class RegistrationActivity extends AppCompatActivity {
                                         }
                                     });
                                 }else {
-
+                                    String status="Hi there I'm using Chat App";
                                     imageUri="https://firebasestorage.googleapis.com/v0/b/chatapp-3c1c1.appspot.com/o/profile.png?alt=media&token=70d1423b-775d-46db-9c4b-f60ecc258a75";
-                                    Users users=new Users(auth.getUid(),name,email,imageUri);
+                                    Users users=new Users(auth.getUid(),name,email,imageUri,status);
                                     reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
