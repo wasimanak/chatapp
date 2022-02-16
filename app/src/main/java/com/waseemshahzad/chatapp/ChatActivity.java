@@ -130,7 +130,7 @@ public class ChatActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         database.getReference().child("chats")
-//                                .child("recieverRoom")
+                                .child("recieverRoom")
                                 .child("messeges")
                                 .push().setValue(messeges).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
