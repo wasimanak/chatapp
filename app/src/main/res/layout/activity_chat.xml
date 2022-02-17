@@ -68,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Type your Message"
                 android:background="@null"
+                android:inputType="textCapSentences"
                 android:layout_gravity="center"
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingStart="@dimen/_10sdp"

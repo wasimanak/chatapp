@@ -6,12 +6,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.BuildConfig;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +28,7 @@ import com.waseemshahzad.chatapp.ModelClass.UserAdapter;
 import com.waseemshahzad.chatapp.Adapter.Users;
 import com.waseemshahzad.chatapp.Setting_Activity;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,12 +38,17 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase database;
     ArrayList<Users> usersArrayList;
     ImageView img_logout, setting;
+    TextView btn_shareapp,btn_moreapps,btn_rateus;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btn_rateus=findViewById(R.id.btn_rateus);
+        btn_moreapps=findViewById(R.id.btn_moreapps);
+        btn_shareapp=findViewById(R.id.btn_shareapp);
 
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -87,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         FirebaseAuth.getInstance().signOut();
-                        startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
                     }
                 });
                 nobtn.setOnClickListener(new View.OnClickListener() {
@@ -110,8 +121,123 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (auth.getCurrentUser() == null) {
-            startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
+
+        btn_moreapps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+            }
+        });
+        btn_rateus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentRateUs = new Intent(Intent.ACTION_VIEW);
+                intentRateUs.setData(Uri.parse("market://details?id=" + getPackageName()));
+                startActivity(intentRateUs);
+            }
+        });
+        btn_shareapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intentShare = new Intent(Intent.ACTION_SEND);
+                intentShare.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text) + " https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
+                intentShare.setType("text/plain");
+                startActivity(Intent.createChooser(intentShare,"settings_share"));
+            }
+        });
+
+    }
+    public void showDialog(){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.contactus_dialoge);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.dilog_bg);
+        ImageView iv_call,iv_facebook,iv_google,iv_youtube;
+
+        dialog.show();
+
+        Button btn_close = dialog.findViewById(R.id.btn_close);
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+
+        });
+        iv_call=dialog.findViewById(R.id.iv_call);
+        iv_facebook=dialog.findViewById(R.id.iv_facebook);
+        iv_google=dialog.findViewById(R.id.iv_google);
+        iv_youtube=dialog.findViewById(R.id.iv_youtube);
+
+        iv_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String defultapp = "WhatsApp";
+
+                try {
+                    String url = "https://api.whatsapp.com/send?phone=+923012861054" +
+                            "&text=" + URLEncoder.encode("HELLO Kalma App TEAM !  ", "UTF-8");
+
+                    Intent sendIntent = new Intent("android.intent.action.MAIN");
+                    sendIntent.setAction(Intent.ACTION_VIEW);
+
+                    if (defultapp.equalsIgnoreCase("WhatsApp")) {
+                        sendIntent.setPackage("com.whatsapp");
+                        Log.e("message", "WhatsApp");
+                    }
+                    sendIntent.setData(Uri.parse(url));
+                    startActivity(sendIntent);
+
+                } catch (Exception e) {
+                    Log.e("message", e.getMessage());
+                }
+            }
+        });
+        iv_google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("mailto:"+"wasimanak@gmail.com"));
+//                intent.putExtra(Intent.EXTRA_SUBJECT, "KSK User");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "KSK USER");
+                intent.putExtra(Intent.EXTRA_EMAIL, "\nThis email from Kalma App USER");
+
+                startActivity(intent);
+
+
+
+
+
+            }
+        });
+        iv_youtube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=null;
+                String url="https://www.youtube.com/c/WasiManak";
+                try {
+                    intent =new Intent(Intent.ACTION_VIEW);
+                    intent.setPackage("com.google.android.youtube");
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
+                }
+            }
+        });
+        iv_facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String YourPageURL = "https://www.facebook.com/CEdiscoveries";
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(YourPageURL));
+
+                startActivity(browserIntent);
+            }
+        });
 
     }
 }

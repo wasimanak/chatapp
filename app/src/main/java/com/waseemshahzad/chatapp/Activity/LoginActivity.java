@@ -49,17 +49,16 @@ public class LoginActivity extends AppCompatActivity {
                 String password = login_password.getText().toString();
 
                 if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                    progressDialog.dismiss();
 
                     Toast.makeText(LoginActivity.this, "Enter Valid data", Toast.LENGTH_SHORT).show();
 
                 } else if (!email.matches(emailPattern)) {
-                    progressDialog.dismiss();
+
 
                     login_email.setError("Invalid Email");
                     Toast.makeText(LoginActivity.this, "Invalid Email", Toast.LENGTH_SHORT).show();
                 } else if (password.length() > 6) {
-                    progressDialog.dismiss();
+
                     login_password.setError("Invalid Password");
                     Toast.makeText(LoginActivity.this, "Minimum 6 chractors Password", Toast.LENGTH_SHORT).show();
                 } else {
@@ -67,10 +66,11 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                progressDialog.show();
+
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
                             } else {
-                                progressDialog.dismiss();
+
                                 Toast.makeText(LoginActivity.this, "Eroor in Login", Toast.LENGTH_SHORT).show();
                             }
                         }
