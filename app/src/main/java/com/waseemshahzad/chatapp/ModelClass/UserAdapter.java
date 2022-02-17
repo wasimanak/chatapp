@@ -1,4 +1,4 @@
-package com.waseemshahzad.chatapp;
+package com.waseemshahzad.chatapp.ModelClass;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
+import com.waseemshahzad.chatapp.Activity.ChatActivity;
+import com.waseemshahzad.chatapp.R;
+import com.waseemshahzad.chatapp.Adapter.Users;
 
 import java.util.ArrayList;
 
@@ -21,7 +24,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder> {
     Context MainActivity;
     ArrayList<Users> usersArrayList;
 
-    public UserAdapter(MainActivity mainActivity, ArrayList<Users> usersArrayList) {
+    public UserAdapter(com.waseemshahzad.chatapp.Activity.MainActivity mainActivity, ArrayList<Users> usersArrayList) {
     this.MainActivity=mainActivity;
     this.usersArrayList=usersArrayList;
     }
@@ -44,7 +47,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity,ChatActivity.class);
+                Intent intent=new Intent(MainActivity, ChatActivity.class);
 
                 intent.putExtra("name",users.getName());
                 intent.putExtra("RecieverImage",users.getImageUri());

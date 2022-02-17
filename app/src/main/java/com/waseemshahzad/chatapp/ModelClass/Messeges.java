@@ -1,4 +1,4 @@
-package com.waseemshahzad.chatapp;
+package com.waseemshahzad.chatapp.ModelClass;
 
 public class Messeges {
     String messege;

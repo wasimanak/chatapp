@@ -1,4 +1,4 @@
-package com.waseemshahzad.chatapp;
+package com.waseemshahzad.chatapp.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.waseemshahzad.chatapp.R;
+import com.waseemshahzad.chatapp.Adapter.Users;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

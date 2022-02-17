@@ -1,4 +1,4 @@
-package com.waseemshahzad.chatapp;
+package com.waseemshahzad.chatapp.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +18,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.waseemshahzad.chatapp.R;
+import com.waseemshahzad.chatapp.ModelClass.UserAdapter;
+import com.waseemshahzad.chatapp.Adapter.Users;
 
 import java.util.ArrayList;
 

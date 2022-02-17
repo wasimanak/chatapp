@@ -1,4 +1,4 @@
-package com.waseemshahzad.chatapp;
+package com.waseemshahzad.chatapp.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.waseemshahzad.chatapp.ModelClass.Messeges;
+import com.waseemshahzad.chatapp.R;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -71,14 +73,14 @@ public class ChatActivity extends AppCompatActivity {
         SenderUID=firebaseAuth.getUid();
 
         senderRoom=SenderUID+RecieverUID;
-        senderRoom=RecieverUID+SenderUID;
+        recieverRoom=RecieverUID+SenderUID;
 
 
 
         DatabaseReference reference=database.getReference().child("user").child(firebaseAuth.getUid());
-        DatabaseReference chatreference=database.getReference().child("chats").child(senderRoom).child("messeges");
+        DatabaseReference chatReference=database.getReference().child("chats").child(senderRoom).child("messeges");
 
-        chatreference.addValueEventListener(new ValueEventListener() {
+        chatReference .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren())
@@ -113,7 +115,7 @@ public class ChatActivity extends AppCompatActivity {
                 String messege=et_msg.getText().toString();
                 if (messege.isEmpty())
                 {
-                    Toast.makeText(ChatActivity.this, "Please enter text", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChatActivity.this, "Please enter valid Messege", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 et_msg.setText("");
@@ -130,7 +132,7 @@ public class ChatActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         database.getReference().child("chats")
-                                .child("recieverRoom")
+                                .child(recieverRoom)
                                 .child("messeges")
                                 .push().setValue(messeges).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override

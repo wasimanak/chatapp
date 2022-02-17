@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/drawable-v24/etbg.xml" value="0.205" />
+        <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/drawable-v24/reciever_shape.xml" value="0.205" />
         <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/drawable/dialoge_layout.xml" value="0.205" />
         <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/drawable/empty_back.xml" value="0.205" />
+        <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/drawable/sender_shape.xml" value="0.205" />
         <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/drawable/shape_dialoge.xml" value="0.205" />
         <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/drawable/shape_item.xml" value="0.205" />
         <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/layout/activity_chat.xml" value="0.35260416666666666" />
@@ -15,6 +17,8 @@
         <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/layout/activity_splash.xml" value="0.358695652173913" />
         <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/layout/dialoge_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/layout/item_user_row.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/layout/reciever_layout_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/layout/sender_layout_item.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
