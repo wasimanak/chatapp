@@ -32,7 +32,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatActivity extends AppCompatActivity {
 
-    String RecieverImage,RecieverUID,RecieverName,SenderUID;
+    String RecieverImage, RecieverUID, RecieverName, SenderUID;
     CircleImageView profileimage;
     TextView recievername;
     FirebaseDatabase database;
@@ -43,7 +43,7 @@ public class ChatActivity extends AppCompatActivity {
     CardView sendbtn;
     EditText et_msg;
 
-    String senderRoom,recieverRoom;
+    String senderRoom, recieverRoom;
 
     RecyclerView msgadapter;
     ArrayList<Messeges> messegesArrayList;
@@ -55,51 +55,48 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        database=FirebaseDatabase.getInstance();
-        firebaseAuth=FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        RecieverName=getIntent().getStringExtra("name");
-        RecieverImage=getIntent().getStringExtra("RecieverImage");
-        RecieverUID=getIntent().getStringExtra("uid");
-        messegesArrayList=new ArrayList<>();
+        RecieverName = getIntent().getStringExtra("name");
+        RecieverImage = getIntent().getStringExtra("RecieverImage");
+        RecieverUID = getIntent().getStringExtra("uid");
+        messegesArrayList = new ArrayList<>();
 
 
-        profileimage=findViewById(R.id.profile_image);
-        recievername=findViewById(R.id.recievername);
-        msgadapter=findViewById(R.id.msgadapter);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        profileimage = findViewById(R.id.profile_image);
+        recievername = findViewById(R.id.recievername);
+        msgadapter = findViewById(R.id.msgadapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
         msgadapter.setLayoutManager(linearLayoutManager);
-        adapter=new MessegesAdapter(ChatActivity.this,messegesArrayList);
+        adapter = new MessegesAdapter(ChatActivity.this, messegesArrayList);
         msgadapter.setAdapter(adapter);
 
 
-        sendbtn=findViewById(R.id.sendbtn);
-        et_msg=findViewById(R.id.et_msg);
+        sendbtn = findViewById(R.id.sendbtn);
+        et_msg = findViewById(R.id.et_msg);
 
         Picasso.get().load(RecieverImage).into(profileimage);
-        recievername.setText(""+RecieverName);
+        recievername.setText("" + RecieverName);
 
-        SenderUID=firebaseAuth.getUid();
+        SenderUID = firebaseAuth.getUid();
 
-        senderRoom=SenderUID+RecieverUID;
-        recieverRoom=RecieverUID+SenderUID;
-
-
-
-        DatabaseReference reference=database.getReference().child("user").child(firebaseAuth.getUid());
-        DatabaseReference chatReference=database.getReference().child("chats").child(senderRoom).child("messeges");
+        senderRoom = SenderUID + RecieverUID;
+        recieverRoom = RecieverUID + SenderUID;
 
 
+        DatabaseReference reference = database.getReference().child("user").child(firebaseAuth.getUid());
+        DatabaseReference chatReference = database.getReference().child("chats").child(senderRoom).child("messeges");
 
-        chatReference .addValueEventListener(new ValueEventListener() {
+
+        chatReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 messegesArrayList.clear();
-                for (DataSnapshot dataSnapshot:snapshot.getChildren())
-                {
-                    Messeges messeges=dataSnapshot.getValue(Messeges.class);
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Messeges messeges = dataSnapshot.getValue(Messeges.class);
                     messegesArrayList.add(messeges);
                 }
 
@@ -115,8 +112,8 @@ public class ChatActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                sImage=snapshot.child("imageUri").getValue().toString();
-                rImage=RecieverImage;
+                sImage = snapshot.child("imageUri").getValue().toString();
+                rImage = RecieverImage;
 
             }
 
@@ -129,18 +126,17 @@ public class ChatActivity extends AppCompatActivity {
         sendbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String messege=et_msg.getText().toString();
-                if (messege.isEmpty())
-                {
+                String messege = et_msg.getText().toString();
+                if (messege.isEmpty()) {
                     Toast.makeText(ChatActivity.this, "Please enter valid Messege", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 et_msg.setText("");
 
-                Date date=new Date();
-                Messeges messeges=new Messeges(messege,SenderUID,date.getTime());
+                Date date = new Date();
+                Messeges messeges = new Messeges(messege, SenderUID, date.getTime());
 
-                database=FirebaseDatabase.getInstance();
+                database = FirebaseDatabase.getInstance();
                 database.getReference().child("chats")
                         .child(senderRoom)
                         .child("messeges")

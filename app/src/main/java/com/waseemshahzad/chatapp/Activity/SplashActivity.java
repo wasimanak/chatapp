@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        View mSplashImage=findViewById(R.id.splash);
+        View mSplashImage = findViewById(R.id.splash);
         TextView mSplashText = findViewById(R.id.splashText);
         Animation splashAnimImage = AnimationUtils.loadAnimation(this, R.anim.splash_anim_img);
         Animation splashAnimText = AnimationUtils.loadAnimation(this, R.anim.splash_anim);
@@ -29,7 +29,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(this::gotoMainActivity, 2000);
     }
 
-    private void gotoMainActivity(){
+    private void gotoMainActivity() {
         startActivity(new Intent(SplashActivity.this, MainActivity.class));
         finish();
     }

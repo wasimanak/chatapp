@@ -22,9 +22,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MessegesAdapter extends RecyclerView.Adapter {
     Context context;
-    ArrayList<Messeges>messegesArrayList;
-    int ITEM_SEND=1;
-    int ITEM_RECIEVE=2;
+    ArrayList<Messeges> messegesArrayList;
+    int ITEM_SEND = 1;
+    int ITEM_RECIEVE = 2;
 
     public MessegesAdapter(Context context, ArrayList<Messeges> messegesArrayList) {
         this.context = context;
@@ -35,13 +35,12 @@ public class MessegesAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        if (viewType==ITEM_SEND)
-        {
-            View view = LayoutInflater.from(context).inflate(R.layout.sender_layout_item,parent,false);
+        if (viewType == ITEM_SEND) {
+            View view = LayoutInflater.from(context).inflate(R.layout.sender_layout_item, parent, false);
             return new SenderViewHolder(view);
 
-        }else {
-            View view = LayoutInflater.from(context).inflate(R.layout.reciever_layout_item,parent,false);
+        } else {
+            View view = LayoutInflater.from(context).inflate(R.layout.reciever_layout_item, parent, false);
             return new RecieverViewHolder(view);
 
 
@@ -52,18 +51,17 @@ public class MessegesAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        Messeges messeges=messegesArrayList.get(position);
-        if (holder.getClass()==SenderViewHolder.class)
-        {
-            SenderViewHolder viewHolder=(SenderViewHolder) holder;
+        Messeges messeges = messegesArrayList.get(position);
+        if (holder.getClass() == SenderViewHolder.class) {
+            SenderViewHolder viewHolder = (SenderViewHolder) holder;
 
             viewHolder.txtmessege.setText(messeges.getMessege());
 
             Picasso.get().load(sImage).into(viewHolder.circleImageView);
 
-        }else{
+        } else {
 
-            RecieverViewHolder viewHolder=(RecieverViewHolder) holder;
+            RecieverViewHolder viewHolder = (RecieverViewHolder) holder;
             viewHolder.txtmessege.setText(messeges.getMessege());
             Picasso.get().load(sImage).into(viewHolder.circleImageView);
 
@@ -78,14 +76,13 @@ public class MessegesAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-     Messeges messeges=messegesArrayList.get(position);
+        Messeges messeges = messegesArrayList.get(position);
 
-     if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(messeges.getSenderid()))
-     {
-         return ITEM_SEND;
-     }else {
-         return ITEM_RECIEVE;
-     }
+        if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(messeges.getSenderid())) {
+            return ITEM_SEND;
+        } else {
+            return ITEM_RECIEVE;
+        }
 
     }
 
@@ -97,8 +94,8 @@ public class MessegesAdapter extends RecyclerView.Adapter {
         public SenderViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            circleImageView=itemView.findViewById(R.id.profile_image);
-            txtmessege=itemView.findViewById(R.id.txtmesseges);
+            circleImageView = itemView.findViewById(R.id.profile_image);
+            txtmessege = itemView.findViewById(R.id.txtmesseges);
         }
     }
 
@@ -111,8 +108,8 @@ public class MessegesAdapter extends RecyclerView.Adapter {
             super(itemView);
 
 
-            circleImageView=itemView.findViewById(R.id.profile_image);
-            txtmessege=itemView.findViewById(R.id.txtmesseges);
+            circleImageView = itemView.findViewById(R.id.profile_image);
+            txtmessege = itemView.findViewById(R.id.txtmesseges);
 
         }
     }

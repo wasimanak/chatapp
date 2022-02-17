@@ -26,14 +26,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder> {
     ArrayList<Users> usersArrayList;
 
     public UserAdapter(com.waseemshahzad.chatapp.Activity.MainActivity mainActivity, ArrayList<Users> usersArrayList) {
-    this.MainActivity=mainActivity;
-    this.usersArrayList=usersArrayList;
+        this.MainActivity = mainActivity;
+        this.usersArrayList = usersArrayList;
     }
 
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(MainActivity).inflate(R.layout.item_user_row,parent,false);
+        View view = LayoutInflater.from(MainActivity).inflate(R.layout.item_user_row, parent, false);
         return new Viewholder(view);
     }
 
@@ -41,9 +41,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder> {
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         Users users = usersArrayList.get(position);
 
-        if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(users.getUid()))
-
-        {
+        if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(users.getUid())) {
             holder.itemView.setVisibility(View.GONE);
 
         }
@@ -55,35 +53,35 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity, ChatActivity.class);
+                Intent intent = new Intent(MainActivity, ChatActivity.class);
 
-                intent.putExtra("name",users.getName());
-                intent.putExtra("RecieverImage",users.getImageUri());
-                intent.putExtra("uid",users.getUid());
+                intent.putExtra("name", users.getName());
+                intent.putExtra("RecieverImage", users.getImageUri());
+                intent.putExtra("uid", users.getUid());
                 MainActivity.startActivity(intent);
             }
         });
 
 
-
     }
-
 
 
     @Override
     public int getItemCount() {
         return usersArrayList.size();
     }
+
     class Viewholder extends RecyclerView.ViewHolder {
         CircleImageView user_profile;
         TextView user_name;
         TextView user_status;
+
         public Viewholder(@NonNull View itemView) {
             super(itemView);
 
-            user_profile=itemView.findViewById(R.id.user_image);
-            user_name=itemView.findViewById(R.id.user_name);
-            user_status=itemView.findViewById(R.id.user_status);
+            user_profile = itemView.findViewById(R.id.user_image);
+            user_name = itemView.findViewById(R.id.user_name);
+            user_status = itemView.findViewById(R.id.user_status);
 
         }
     }

@@ -33,7 +33,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Setting_Activity extends AppCompatActivity {
     CircleImageView setting_image;
-    EditText setting_name,setting_status;
+    EditText setting_name, setting_status;
     FirebaseAuth auth;
     FirebaseDatabase database;
     FirebaseStorage storage;
@@ -47,7 +47,7 @@ public class Setting_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        progressDialog=new ProgressDialog(this);
+        progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait...");
         progressDialog.setCancelable(false);
 
@@ -55,21 +55,21 @@ public class Setting_Activity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
 
-        setting_image=findViewById(R.id.setting_image);
-        setting_name=findViewById(R.id.setting_name);
-        setting_status=findViewById(R.id.setting_Status);
-        save=findViewById(R.id.save);
+        setting_image = findViewById(R.id.setting_image);
+        setting_name = findViewById(R.id.setting_name);
+        setting_status = findViewById(R.id.setting_Status);
+        save = findViewById(R.id.save);
 
-        DatabaseReference reference=database.getReference().child("user").child(auth.getUid());
-        StorageReference storageReference=storage.getReference().child("upload").child(auth.getUid());
+        DatabaseReference reference = database.getReference().child("user").child(auth.getUid());
+        StorageReference storageReference = storage.getReference().child("upload").child(auth.getUid());
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                email=snapshot.child("email").getValue().toString();
-                String status=snapshot.child("status").getValue().toString();
-                String name=snapshot.child("name").getValue().toString();
-                String image=snapshot.child("imageUri").getValue().toString();
+                email = snapshot.child("email").getValue().toString();
+                String status = snapshot.child("status").getValue().toString();
+                String name = snapshot.child("name").getValue().toString();
+                String image = snapshot.child("imageUri").getValue().toString();
 
                 setting_name.setText(name);
                 setting_status.setText(status);
@@ -96,33 +96,30 @@ public class Setting_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 progressDialog.show();
 
-                String name=setting_name.getText().toString();
-                String status=setting_status.getText().toString();
+                String name = setting_name.getText().toString();
+                String status = setting_status.getText().toString();
 
                 if (
 
-                        SelectedImageURI != null)
-                {
+                        SelectedImageURI != null) {
                     storageReference.putFile(SelectedImageURI).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                             storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-                                    String finalImageUri=uri.toString();
-                                    Users users=new Users(auth.getUid(),name,email,finalImageUri,status);
+                                    String finalImageUri = uri.toString();
+                                    Users users = new Users(auth.getUid(), name, email, finalImageUri, status);
 
                                     reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful())
-                                            {
+                                            if (task.isSuccessful()) {
                                                 progressDialog.dismiss();
                                                 Toast.makeText(Setting_Activity.this, "Data Succesfully Updated", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(Setting_Activity.this, MainActivity.class));
 
-                                            }else
-                                            {
+                                            } else {
                                                 progressDialog.dismiss();
                                                 Toast.makeText(Setting_Activity.this, "Something went Wrong", Toast.LENGTH_SHORT).show();
                                             }
@@ -135,25 +132,23 @@ public class Setting_Activity extends AppCompatActivity {
                         }
                     });
 
-                }else {
+                } else {
 
                     storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            String finalImageUri=uri.toString();
-                            Users users=new Users(auth.getUid(),name,email,finalImageUri,status);
+                            String finalImageUri = uri.toString();
+                            Users users = new Users(auth.getUid(), name, email, finalImageUri, status);
 
                             reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful())
-                                    {
+                                    if (task.isSuccessful()) {
                                         progressDialog.dismiss();
                                         Toast.makeText(Setting_Activity.this, "Data Succesfully Updated", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(Setting_Activity.this, MainActivity.class));
 
-                                    }else
-                                    {
+                                    } else {
                                         progressDialog.dismiss();
                                         Toast.makeText(Setting_Activity.this, "Something went Wrong", Toast.LENGTH_SHORT).show();
                                     }
@@ -168,14 +163,13 @@ public class Setting_Activity extends AppCompatActivity {
         });
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==10)
-        {
-            if (data!=null)
-            {
-                SelectedImageURI=data.getData();
+        if (requestCode == 10) {
+            if (data != null) {
+                SelectedImageURI = data.getData();
                 setting_image.setImageURI(SelectedImageURI);
             }
         }

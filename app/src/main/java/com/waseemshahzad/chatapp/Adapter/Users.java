@@ -10,12 +10,12 @@ public class Users {
     public Users() {
     }
 
-    public Users(String uid, String name, String email, String imageUri,String status) {
+    public Users(String uid, String name, String email, String imageUri, String status) {
         this.uid = uid;
         this.name = name;
         this.email = email;
         this.imageUri = imageUri;
-        this.status=status;
+        this.status = status;
     }
 
     public String getStatus() {
