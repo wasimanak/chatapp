@@ -130,7 +130,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                     });
                                 }else {
                                     String status="Hi there I'm using Chat App";
-                                    imageUri="https://firebasestorage.googleapis.com/v0/b/chatapp-3c1c1.appspot.com/o/profile.png?alt=media&token=70d1423b-775d-46db-9c4b-f60ecc258a75";
+                                    imageUri="https://firebasestorage.googleapis.com/v0/b/chatapp-3c1c1.appspot.com/o/profile.png?alt=media&token=237b04a8-95ba-4319-a157-761363d96e47";
                                     Users users=new Users(auth.getUid(),name,email,imageUri,status);
                                     reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
@@ -157,7 +157,7 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setType("image/*");
+                intent.setType("image");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), 10);
             }

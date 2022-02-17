@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1C004E"
+    android:background="@color/primary_blue"
     tools:context=".Activity.SplashActivity">
 
     <LinearLayout
@@ -20,7 +20,7 @@
             android:id="@+id/splashImage"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/logosplash"
+            android:src="@drawable/logo"
             android:layout_gravity="center"/>
 
         <TextView
