@@ -3,6 +3,7 @@ package com.waseemshahzad.chatapp.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.waseemshahzad.chatapp.Adapter.MessegesAdapter;
 import com.waseemshahzad.chatapp.ModelClass.Messeges;
 import com.waseemshahzad.chatapp.R;
 
@@ -46,6 +48,8 @@ public class ChatActivity extends AppCompatActivity {
     RecyclerView msgadapter;
     ArrayList<Messeges> messegesArrayList;
 
+    MessegesAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +67,12 @@ public class ChatActivity extends AppCompatActivity {
         profileimage=findViewById(R.id.profile_image);
         recievername=findViewById(R.id.recievername);
         msgadapter=findViewById(R.id.msgadapter);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
+        msgadapter.setLayoutManager(linearLayoutManager);
+        adapter=new MessegesAdapter(ChatActivity.this,messegesArrayList);
+        msgadapter.setAdapter(adapter);
+
 
         sendbtn=findViewById(R.id.sendbtn);
         et_msg=findViewById(R.id.et_msg);
@@ -80,14 +90,20 @@ public class ChatActivity extends AppCompatActivity {
         DatabaseReference reference=database.getReference().child("user").child(firebaseAuth.getUid());
         DatabaseReference chatReference=database.getReference().child("chats").child(senderRoom).child("messeges");
 
+
+
         chatReference .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                messegesArrayList.clear();
                 for (DataSnapshot dataSnapshot:snapshot.getChildren())
                 {
                     Messeges messeges=dataSnapshot.getValue(Messeges.class);
                     messegesArrayList.add(messeges);
                 }
+
+                adapter.notifyDataSetChanged();
             }
 
             @Override

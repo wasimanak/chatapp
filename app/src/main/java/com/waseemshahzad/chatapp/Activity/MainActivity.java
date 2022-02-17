@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.waseemshahzad.chatapp.R;
 import com.waseemshahzad.chatapp.ModelClass.UserAdapter;
 import com.waseemshahzad.chatapp.Adapter.Users;
+import com.waseemshahzad.chatapp.Setting_Activity;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     UserAdapter adapter;
     FirebaseDatabase database;
     ArrayList<Users> usersArrayList;
-    ImageView img_logout;
+    ImageView img_logout,setting;
 
 
     @Override
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         img_logout=findViewById(R.id.img_logout);
+        setting=findViewById(R.id.setting);
+
         mainuserrecyclerview=findViewById(R.id.mainuserrecyclerview);
         mainuserrecyclerview.setLayoutManager(new LinearLayoutManager(this));
         adapter=new UserAdapter(MainActivity.this,usersArrayList);
@@ -96,6 +99,13 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 dialog.show();
+            }
+        });
+
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Setting_Activity.class));
             }
         });
 

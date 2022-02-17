@@ -1,5 +1,7 @@
 package com.waseemshahzad.chatapp.Adapter;
 
+import static com.waseemshahzad.chatapp.Activity.ChatActivity.sImage;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 import com.waseemshahzad.chatapp.ModelClass.Messeges;
 import com.waseemshahzad.chatapp.R;
 
@@ -23,6 +26,10 @@ public class MessegesAdapter extends RecyclerView.Adapter {
     int ITEM_SEND=1;
     int ITEM_RECIEVE=2;
 
+    public MessegesAdapter(Context context, ArrayList<Messeges> messegesArrayList) {
+        this.context = context;
+        this.messegesArrayList = messegesArrayList;
+    }
 
     @NonNull
     @Override
@@ -30,11 +37,11 @@ public class MessegesAdapter extends RecyclerView.Adapter {
 
         if (viewType==ITEM_SEND)
         {
-            View view LayoutInflater.from(context).inflate(R.layout.sender_layout_item,parent,false);
+            View view = LayoutInflater.from(context).inflate(R.layout.sender_layout_item,parent,false);
             return new SenderViewHolder(view);
 
         }else {
-            View view LayoutInflater.from(context).inflate(R.layout.reciever_layout_item,parent,false);
+            View view = LayoutInflater.from(context).inflate(R.layout.reciever_layout_item,parent,false);
             return new RecieverViewHolder(view);
 
 
@@ -45,11 +52,28 @@ public class MessegesAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
+        Messeges messeges=messegesArrayList.get(position);
+        if (holder.getClass()==SenderViewHolder.class)
+        {
+            SenderViewHolder viewHolder=(SenderViewHolder) holder;
+
+            viewHolder.txtmessege.setText(messeges.getMessege());
+
+            Picasso.get().load(sImage).into(viewHolder.circleImageView);
+
+        }else{
+
+            RecieverViewHolder viewHolder=(RecieverViewHolder) holder;
+            viewHolder.txtmessege.setText(messeges.getMessege());
+            Picasso.get().load(sImage).into(viewHolder.circleImageView);
+
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return messegesArrayList.size();
     }
 
     @Override
