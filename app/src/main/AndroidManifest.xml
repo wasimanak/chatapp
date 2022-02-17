@@ -11,16 +11,24 @@
         android:theme="@style/Theme.Chatapp">
         <activity
             android:name=".Setting_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.ChatActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+
+            />
         <activity
             android:name=".Activity.RegistrationActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+
+            />
         <activity
             android:name=".Activity.SplashActivity"
             android:exported="true">
@@ -29,10 +37,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            android:screenOrientation="portrait"
+
         </activity>
         <activity
             android:name=".Activity.MainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

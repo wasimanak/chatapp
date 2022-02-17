@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,11 +40,16 @@ public class Setting_Activity extends AppCompatActivity {
     ImageView save;
     Uri SelectedImageURI;
     String email;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("Please Wait...");
+        progressDialog.setCancelable(false);
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -88,6 +94,7 @@ public class Setting_Activity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
 
                 String name=setting_name.getText().toString();
                 String status=setting_status.getText().toString();
@@ -110,11 +117,13 @@ public class Setting_Activity extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful())
                                             {
+                                                progressDialog.dismiss();
                                                 Toast.makeText(Setting_Activity.this, "Data Succesfully Updated", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(Setting_Activity.this, MainActivity.class));
 
                                             }else
                                             {
+                                                progressDialog.dismiss();
                                                 Toast.makeText(Setting_Activity.this, "Something went Wrong", Toast.LENGTH_SHORT).show();
                                             }
                                         }
@@ -139,11 +148,13 @@ public class Setting_Activity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful())
                                     {
+                                        progressDialog.dismiss();
                                         Toast.makeText(Setting_Activity.this, "Data Succesfully Updated", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(Setting_Activity.this, MainActivity.class));
 
                                     }else
                                     {
+                                        progressDialog.dismiss();
                                         Toast.makeText(Setting_Activity.this, "Something went Wrong", Toast.LENGTH_SHORT).show();
                                     }
                                 }

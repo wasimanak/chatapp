@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     UserAdapter adapter;
     FirebaseDatabase database;
     ArrayList<Users> usersArrayList;
-    ImageView img_logout,setting;
+    ImageView img_logout, setting;
 
 
     @Override
@@ -39,22 +39,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        database=FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
 
-        usersArrayList=new ArrayList<>();
+        usersArrayList = new ArrayList<>();
 
-        DatabaseReference reference=database.getReference().child("user");
+        DatabaseReference reference = database.getReference().child("user");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-           for (DataSnapshot dataSnapshot:snapshot.getChildren())
-           {
-               Users users=dataSnapshot.getValue(Users.class);
-               usersArrayList.add(users);
-           }
-           adapter.notifyDataSetChanged();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Users users = dataSnapshot.getValue(Users.class);
+                    usersArrayList.add(users);
+                }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -64,31 +63,31 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        img_logout=findViewById(R.id.img_logout);
-        setting=findViewById(R.id.setting);
+        img_logout = findViewById(R.id.img_logout);
+        setting = findViewById(R.id.setting);
 
-        mainuserrecyclerview=findViewById(R.id.mainuserrecyclerview);
+        mainuserrecyclerview = findViewById(R.id.mainuserrecyclerview);
         mainuserrecyclerview.setLayoutManager(new LinearLayoutManager(this));
-        adapter=new UserAdapter(MainActivity.this,usersArrayList);
+        adapter = new UserAdapter(MainActivity.this, usersArrayList);
         mainuserrecyclerview.setAdapter(adapter);
 
         img_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog=new Dialog(MainActivity.this,R.style.Dialog);
+                Dialog dialog = new Dialog(MainActivity.this, R.style.Dialog);
 
                 dialog.setContentView(R.layout.dialoge_layout);
 
-                TextView yesbtn,nobtn;
+                TextView yesbtn, nobtn;
 
-                yesbtn=dialog.findViewById(R.id.yesbtn);
-                nobtn=dialog.findViewById(R.id.nobtn);
+                yesbtn = dialog.findViewById(R.id.yesbtn);
+                nobtn = dialog.findViewById(R.id.nobtn);
 
                 yesbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         FirebaseAuth.getInstance().signOut();
-                        startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
+                        startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
                     }
                 });
                 nobtn.setOnClickListener(new View.OnClickListener() {
@@ -110,12 +109,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-    if (auth.getCurrentUser()==null)
-    {
-        startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
-    }
+        if (auth.getCurrentUser() == null) {
+            startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
+        }
 
     }
 }
