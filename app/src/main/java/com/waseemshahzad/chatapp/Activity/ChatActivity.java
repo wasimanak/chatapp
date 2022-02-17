@@ -117,6 +117,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 sImage=snapshot.child("imageUri").getValue().toString();
                 rImage=RecieverImage;
+
             }
 
             @Override
