@@ -62,11 +62,13 @@ public class MainActivity extends AppCompatActivity {
         usersArrayList = new ArrayList<>();
 
         DatabaseReference reference = database.getReference().child("user");
-        Toast.makeText(this, "Fetching data Please wait...", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Fetching data Please wait...", Toast.LENGTH_SHORT).show();
+        progressDialog.show();
         reference.addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                progressDialog.dismiss();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Users users = dataSnapshot.getValue(Users.class);
                     usersArrayList.add(users);
