@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Projects/Chatapp/app/src/main/res/drawable-v24/dilog_bg.xml" value="0.205" />
+        <entry key="..\:/Android Projects/Chatapp/app/src/main/res/layout/activity_chat.xml" value="0.33" />
+        <entry key="..\:/Android Projects/Chatapp/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Projects/Chatapp/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Projects/Chatapp/app/src/main/res/layout/activity_registration.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Projects/Chatapp/app/src/main/res/layout/activity_setting.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Projects/Chatapp/app/src/main/res/layout/activity_splash.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Projects/Chatapp/app/src/main/res/layout/contactus_dialoge.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Projects/Chatapp/app/src/main/res/layout/dialoge_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Projects/Chatapp/app/src/main/res/layout/item_user_row.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Projects/Chatapp/app/src/main/res/layout/reciever_layout_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Projects/Chatapp/app/src/main/res/layout/sender_layout_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/drawable-v24/btnbg.xml" value="0.205" />
         <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/drawable-v24/closebtnbg.xml" value="0.205" />
         <entry key="..\:/Users/WaseemShahzad/AndroidStudioProjects/Chatapp/app/src/main/res/drawable-v24/dilog_bg.xml" value="0.205" />

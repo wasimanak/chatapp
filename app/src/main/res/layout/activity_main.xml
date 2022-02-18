@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#9DEDED"
     tools:context=".Activity.MainActivity"
+    android:keepScreenOn="true"
     >
 
     <LinearLayout
@@ -51,6 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar"
+        android:layout_above="@+id/footer"
         android:layout_marginTop="@dimen/_5sdp">
 
     </androidx.recyclerview.widget.RecyclerView>

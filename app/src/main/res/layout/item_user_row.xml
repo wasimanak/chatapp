@@ -20,7 +20,7 @@
             android:src="@drawable/profile"
             android:layout_gravity="center"
             app:civ_border_width="2dp"
-            app:civ_border_color="#FF000000"/>
+            app:civ_border_color="@color/primary_blue"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,8 +40,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/user_status"
                 android:text="Status"
+                android:maxLines="1"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_15sdp">
+                android:textSize="@dimen/_13sdp">
             </TextView>
 
         </LinearLayout>

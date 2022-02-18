@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.RegistrationActivity"
     android:background="#8947FF"
+    android:keepScreenOn="true"
     >
 
     <LinearLayout
@@ -61,6 +62,7 @@
                     android:inputType="textCapSentences"
                     android:id="@+id/reg_name"
                     android:hint="Name"
+                    android:textColor="@color/black"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/etbg"
                     android:layout_marginLeft="@dimen/_10sdp"

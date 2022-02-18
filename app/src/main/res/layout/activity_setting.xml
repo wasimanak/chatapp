@@ -8,6 +8,7 @@
     android:layout_gravity="center_vertical"
     android:gravity="start"
     android:orientation="vertical"
+    android:background="@color/white"
     >
 
     <ImageView

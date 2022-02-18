@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.ChatActivity"
     android:background="#AADDD3"
+    android:keepScreenOn="true"
     >
 
     <LinearLayout
@@ -19,9 +20,9 @@
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image"
-            android:layout_width="96dp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_height="96dp"
+            android:layout_width="80dp"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:layout_height="80dp"
             android:src="@drawable/profile"
             app:civ_border_width="2dp"
             app:civ_border_color="#FF000000"/>
@@ -31,20 +32,28 @@
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:gravity="center"
-            android:layout_margin="@dimen/_10sdp"
-            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/_20sdp"
             >
         </TextView>
 
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/black"
+            >
+        </View>
     </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/msgadapter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/ll3"
-        android:layout_below="@id/ll1"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_below="@id/ll1">
+    </androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,6 +76,7 @@
                 android:id="@+id/et_msg"
                 android:layout_height="wrap_content"
                 android:hint="Type your Message"
+                android:textColor="@color/black"
                 android:background="@null"
                 android:inputType="textCapSentences"
                 android:layout_gravity="center"
