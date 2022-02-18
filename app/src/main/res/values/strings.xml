@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Chatapp</string>
+    <string name="app_name">PK Chat</string>
     <string name="app_description">Chat with us</string>
     <string name="footer">Developed By: Manak Publisher</string>
-    <string name="share_text">Share and chat with our app</string>
+    <string name="share_text">Share and chat with Friends</string>
 </resources>
