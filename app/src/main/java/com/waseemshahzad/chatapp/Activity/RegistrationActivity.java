@@ -116,7 +116,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                                                 if (task.isSuccessful()) {
                                                                     startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
                                                                 } else {
-                                                                    Toast.makeText(RegistrationActivity.this, "Error in creating a new User", Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(RegistrationActivity.this, "Error in creating account", Toast.LENGTH_SHORT).show();
                                                                 }
                                                             }
                                                         });
