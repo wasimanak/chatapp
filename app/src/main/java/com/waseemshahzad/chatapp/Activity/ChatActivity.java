@@ -95,6 +95,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 messegesArrayList.clear();
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Messeges messeges = dataSnapshot.getValue(Messeges.class);
                     messegesArrayList.add(messeges);

@@ -1,5 +1,6 @@
 package com.waseemshahzad.chatapp.Adapter;
 
+import static com.waseemshahzad.chatapp.Activity.ChatActivity.rImage;
 import static com.waseemshahzad.chatapp.Activity.ChatActivity.sImage;
 
 import android.content.Context;
@@ -23,8 +24,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MessegesAdapter extends RecyclerView.Adapter {
     Context context;
     ArrayList<Messeges> messegesArrayList;
-    int ITEM_SEND = 1;
-    int ITEM_RECIEVE = 2;
+    int ITEM_SEND=1;
+    int ITEM_RECIEVE=2;
 
     public MessegesAdapter(Context context, ArrayList<Messeges> messegesArrayList) {
         this.context = context;
@@ -63,7 +64,7 @@ public class MessegesAdapter extends RecyclerView.Adapter {
 
             RecieverViewHolder viewHolder = (RecieverViewHolder) holder;
             viewHolder.txtmessege.setText(messeges.getMessege());
-            Picasso.get().load(sImage).into(viewHolder.circleImageView);
+            Picasso.get().load(rImage).into(viewHolder.circleImageView);
 
         }
 
