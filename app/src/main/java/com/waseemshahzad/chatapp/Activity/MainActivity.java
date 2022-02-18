@@ -28,7 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.waseemshahzad.chatapp.R;
 import com.waseemshahzad.chatapp.ModelClass.UserAdapter;
 import com.waseemshahzad.chatapp.Adapter.Users;
-import com.waseemshahzad.chatapp.Setting_Activity;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;

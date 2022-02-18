@@ -37,17 +37,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="57dp"
+                    android:layout_marginTop="27dp"
                     android:text="Login"
-                    android:textColor="#030303"
+                    android:textColor="@color/primary_blue"
                     android:textSize="31sp">
                 </TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="57dp"
-                    android:text="Email or Username"
+                    android:layout_marginTop="17dp"
+                    android:text="Email adress"
+                    android:visibility="gone"
                     android:textColor="@color/black"
                     android:textSize="15sp">
                 </TextView>
@@ -56,9 +57,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:id="@+id/login_email"
+                    android:maxLines="1"
                     android:hint="Email Adress"
                     android:background="@drawable/etbg"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_25sdp"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:paddingLeft="@dimen/_10sdp"
@@ -71,13 +73,26 @@
                     android:layout_height="@dimen/_40sdp"
                     android:id="@+id/login_password"
                     android:hint="Password"
+                    android:maxLines="1"
                     android:background="@drawable/etbg"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_25sdp"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     >
                 </EditText>
+
+                <Button
+                    android:layout_width="@dimen/_100sdp"
+                    android:id="@+id/btn_signin"
+                    android:background="@drawable/logo"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:text="Sign in"
+                    android:layout_gravity="right"
+                    >
+                </Button>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -139,7 +154,7 @@
 
         </FrameLayout>
 
-        <Button
+       <!-- <Button
             android:layout_width="@dimen/_100sdp"
             android:id="@+id/btn_signin"
             android:background="@drawable/logo"
@@ -147,7 +162,7 @@
             android:text="Sign in"
             android:layout_gravity="right"
             >
-        </Button>
+        </Button>-->
 
     </LinearLayout>
     <LinearLayout
