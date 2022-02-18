@@ -19,6 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp"
         android:gravity="center"
         android:text="Are you sure to Logout"></TextView>
 
@@ -30,8 +32,9 @@
         <TextView
             android:layout_width="match_parent"
             android:id="@+id/nobtn"
-            android:background="#939393"
+            android:background="@drawable/nobtn"
             android:layout_height="@dimen/_25sdp"
+            android:textSize="@dimen/_16sdp"
             android:textColor="@color/black"
             android:layout_margin="@dimen/_10sdp"
             android:layout_weight="1"
@@ -42,7 +45,8 @@
             android:layout_width="match_parent"
             android:id="@+id/yesbtn"
             android:layout_height="@dimen/_25sdp"
-            android:background="@color/primary_blue"
+            android:background="@drawable/yesbtn"
+            android:textSize="@dimen/_16sdp"
             android:textColor="@color/white"
             android:layout_margin="@dimen/_10sdp"
             android:layout_weight="1"

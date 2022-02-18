@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.BuildConfig;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,12 +41,17 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Users> usersArrayList;
     ImageView img_logout, setting;
     TextView btn_shareapp,btn_moreapps,btn_rateus;
+    ProgressDialog progressDialog;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please Wait...");
+        progressDialog.setCancelable(false);
 
         btn_rateus=findViewById(R.id.btn_rateus);
         btn_moreapps=findViewById(R.id.btn_moreapps);
@@ -56,13 +63,15 @@ public class MainActivity extends AppCompatActivity {
         usersArrayList = new ArrayList<>();
 
         DatabaseReference reference = database.getReference().child("user");
-
-        reference.addValueEventListener(new ValueEventListener() {
+        Toast.makeText(this, "Fetching data Please wait...", Toast.LENGTH_LONG).show();
+        reference.addValueEventListener(new ValueEventListener()
+        {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Users users = dataSnapshot.getValue(Users.class);
                     usersArrayList.add(users);
+
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -89,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
                 dialog.setContentView(R.layout.dialoge_layout);
 
-                TextView yesbtn, nobtn;
+                TextView yesbtn,nobtn;
 
                 yesbtn = dialog.findViewById(R.id.yesbtn);
                 nobtn = dialog.findViewById(R.id.nobtn);
