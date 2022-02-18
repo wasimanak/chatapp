@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        finish();
                     }
                 });
                 nobtn.setOnClickListener(new View.OnClickListener() {

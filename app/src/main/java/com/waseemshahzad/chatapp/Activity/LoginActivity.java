@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 progressDialog.dismiss();
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                finish();
 
                             } else {
                                 progressDialog.dismiss();
@@ -91,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
+                finish();
             }
         });
 
