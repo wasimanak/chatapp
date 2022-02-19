@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase database;
     ArrayList<Users> usersArrayList;
     ImageView img_logout, setting;
-    TextView btn_shareapp,btn_moreapps,btn_rateus;
+    TextView btn_shareapp, btn_moreapps, btn_rateus;
     ProgressDialog progressDialog;
 
 
@@ -63,16 +63,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         FirebaseMessaging.getInstance().subscribeToTopic("Notification");
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait...");
         progressDialog.setCancelable(false);
 
-        btn_rateus=findViewById(R.id.btn_rateus);
-        btn_moreapps=findViewById(R.id.btn_moreapps);
-        btn_shareapp=findViewById(R.id.btn_shareapp);
+        btn_rateus = findViewById(R.id.btn_rateus);
+        btn_moreapps = findViewById(R.id.btn_moreapps);
+        btn_shareapp = findViewById(R.id.btn_shareapp);
 
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -81,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseReference reference = database.getReference().child("user");
         progressDialog.show();
-        reference.addValueEventListener(new ValueEventListener()
-        {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 progressDialog.dismiss();
@@ -116,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
                 dialog.setContentView(R.layout.dialoge_layout);
 
-                TextView yesbtn,nobtn;
+                TextView yesbtn, nobtn;
 
                 yesbtn = dialog.findViewById(R.id.yesbtn);
                 nobtn = dialog.findViewById(R.id.nobtn);
@@ -175,16 +173,17 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentShare = new Intent(Intent.ACTION_SEND);
                 intentShare.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text) + " https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
                 intentShare.setType("text/plain");
-                startActivity(Intent.createChooser(intentShare,"settings_share"));
+                startActivity(Intent.createChooser(intentShare, "settings_share"));
             }
         });
 
     }
-    public void showDialog(){
+
+    public void showDialog() {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.contactus_dialoge);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.dilog_bg);
-        ImageView iv_call,iv_facebook,iv_google,iv_youtube;
+        ImageView iv_call, iv_facebook, iv_google, iv_youtube;
 
         dialog.show();
 
@@ -196,10 +195,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        iv_call=dialog.findViewById(R.id.iv_call);
-        iv_facebook=dialog.findViewById(R.id.iv_facebook);
-        iv_google=dialog.findViewById(R.id.iv_google);
-        iv_youtube=dialog.findViewById(R.id.iv_youtube);
+        iv_call = dialog.findViewById(R.id.iv_call);
+        iv_facebook = dialog.findViewById(R.id.iv_facebook);
+        iv_google = dialog.findViewById(R.id.iv_google);
+        iv_youtube = dialog.findViewById(R.id.iv_youtube);
 
         iv_call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
         iv_google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("mailto:"+"wasimanak@gmail.com"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + "wasimanak@gmail.com"));
 //                intent.putExtra(Intent.EXTRA_SUBJECT, "KSK User");
                 intent.putExtra(Intent.EXTRA_SUBJECT, "KSK USER");
                 intent.putExtra(Intent.EXTRA_EMAIL, "\nThis email from Kalma App USER");
@@ -237,18 +236,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
 
-
-
-
             }
         });
         iv_youtube.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=null;
-                String url="https://www.youtube.com/c/WasiManak";
+                Intent intent = null;
+                String url = "https://www.youtube.com/c/WasiManak";
                 try {
-                    intent =new Intent(Intent.ACTION_VIEW);
+                    intent = new Intent(Intent.ACTION_VIEW);
                     intent.setPackage("com.google.android.youtube");
                     intent.setData(Uri.parse(url));
                     startActivity(intent);
