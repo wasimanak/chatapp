@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.waseemshahzad.chatapp.R;
 import com.waseemshahzad.chatapp.ModelClass.UserAdapter;
 import com.waseemshahzad.chatapp.Adapter.Users;
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FirebaseMessaging.getInstance().subscribeToTopic("Notification");
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait...");
         progressDialog.setCancelable(false);
@@ -62,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         usersArrayList = new ArrayList<>();
 
         DatabaseReference reference = database.getReference().child("user");
-        Toast.makeText(this, "Fetching data Please wait...", Toast.LENGTH_SHORT).show();
         progressDialog.show();
         reference.addValueEventListener(new ValueEventListener()
         {
@@ -127,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Setting_Activity.class));
+
+
             }
         });
 

@@ -119,6 +119,7 @@ public class Setting_Activity extends AppCompatActivity {
                                                 Toast.makeText(Setting_Activity.this, "Data Succesfully Updated", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(Setting_Activity.this, MainActivity.class));
 
+
                                             } else {
                                                 progressDialog.dismiss();
                                                 Toast.makeText(Setting_Activity.this, "Something went Wrong", Toast.LENGTH_SHORT).show();
