@@ -8,7 +8,6 @@
     android:layout_gravity="center_vertical"
     android:gravity="start"
     android:orientation="vertical"
-    android:background="@color/white"
     >
 
     <ImageView
@@ -35,6 +34,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/setting_name"
         android:gravity="center"
+        android:inputType="text"
+        android:imeOptions="actionDone"
         android:layout_margin="@dimen/_10sdp"
         android:padding="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_20sdp"
@@ -50,6 +51,8 @@
         android:id="@+id/setting_Status"
         android:layout_margin="@dimen/_10sdp"
         android:gravity="center"
+        android:imeOptions="actionDone"
+        android:inputType="text"
         android:padding="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:textSize="@dimen/_15sdp"

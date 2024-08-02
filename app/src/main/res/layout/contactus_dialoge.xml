@@ -26,31 +26,6 @@
             android:text="ABOUT US"
             android:textColor="@color/blue" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/_10sdp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:text="Company        : "
-                android:textColor="@color/black" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:textStyle="bold"
-                android:gravity="center_horizontal"
-                android:text="PKSOFTER"
-                android:textColor="@color/blue" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,7 +49,7 @@
                 android:textStyle="bold"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:gravity="center_horizontal"
-                android:text="PKSOFTER"
+                android:text="Manak Builder"
                 android:textColor="@color/blue" />
         </LinearLayout>
 
@@ -99,7 +74,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:gravity="center_horizontal"
-                android:text="pksofter@gmail.com"
+                android:text="manakbuilder@gmail.com"
                 android:textColor="@color/blue" />
         </LinearLayout>
 
@@ -107,6 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
+            android:visibility="gone"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/_10sdp">
 

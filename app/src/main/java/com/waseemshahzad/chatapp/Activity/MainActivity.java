@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     String url = "https://api.whatsapp.com/send?phone=+923012861054" +
-                            "&text=" + URLEncoder.encode("HELLO Kalma App TEAM !  ", "UTF-8");
+                            "&text=" + URLEncoder.encode("HELLO Chat App TEAM !  ", "UTF-8");
 
                     Intent sendIntent = new Intent("android.intent.action.MAIN");
                     sendIntent.setAction(Intent.ACTION_VIEW);

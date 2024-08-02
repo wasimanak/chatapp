@@ -59,6 +59,8 @@
                     android:layout_height="@dimen/_40sdp"
                     android:id="@+id/login_email"
                     android:maxLines="1"
+                    android:inputType="textEmailAddress"
+                    android:imeOptions="actionNext"
                     android:hint="Email Adress"
                     android:background="@drawable/etbg"
                     android:layout_marginTop="@dimen/_25sdp"
@@ -75,6 +77,8 @@
                     android:id="@+id/login_password"
                     android:hint="Password"
                     android:maxLines="1"
+                    android:inputType="textPassword"
+                    android:imeOptions="actionDone"
                     android:background="@drawable/etbg"
                     android:layout_marginTop="@dimen/_25sdp"
                     android:layout_marginLeft="@dimen/_10sdp"
@@ -194,8 +198,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="Signup"
-                android:textColor="#ffffff"
-                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:textSize="25sp"
                 >
             </TextView>
 
