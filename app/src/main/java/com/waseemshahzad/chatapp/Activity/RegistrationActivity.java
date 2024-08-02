@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -75,6 +76,35 @@ public class RegistrationActivity extends AppCompatActivity {
                 String confirmpass = reg_confirmpass.getText().toString();
                 String status = "Hi there I'm using Chat App";
 
+                btn_signup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        progressDialog.show();
+
+                        String email = reg_email.getText().toString();
+                        String password = reg_pass.getText().toString();
+                        auth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                            @Override
+                            public void onSuccess(AuthResult authResult) {
+                                FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+                                if (user.isEmailVerified()){
+                                    startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                                    finish();
+                                    Toast.makeText(RegistrationActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            progressDialog.dismiss();
+                                            Toast.makeText(RegistrationActivity.this, "Check Email", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
 
                 if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) ||
                         TextUtils.isEmpty(pass) || TextUtils.isEmpty(confirmpass)) {
@@ -134,7 +164,8 @@ public class RegistrationActivity extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 progressDialog.dismiss();
-                                                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                                                startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+                                                Toast.makeText(RegistrationActivity.this, "Verify Your Email", Toast.LENGTH_LONG).show();
                                             } else {
                                                 Toast.makeText(RegistrationActivity.this, "Error in creating a new User", Toast.LENGTH_SHORT).show();
                                             }
